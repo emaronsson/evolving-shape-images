@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+
+<BorderPane fx:controller="com.github.boemma.genetic.algorithm.main.Main" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="newImageMenuButton" mnemonicParsing="false" onAction="#loadNewImage" text="Load image" />
+              <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#exitProgram" text="Exit" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   
+   <center>
+      <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane fx:id="evolvingImagePane">
+               <children>
+                  <Canvas fx:id="evolvingImage"/>
+               </children>
+            </AnchorPane>
+          <AnchorPane fx:id="originalImagePane">
+               <children>
+                  <ImageView fx:id="originalImage"/>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+  
+   <bottom>
+      <GridPane BorderPane.alignment="CENTER">
+        
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints vgrow="SOMETIMES" minHeight="10.0" prefHeight="30.0" />
+          <RowConstraints vgrow="SOMETIMES" minHeight="10.0" prefHeight="30.0" />
+          <RowConstraints vgrow="SOMETIMES" minHeight="10.0" prefHeight="30.0" />
+        </rowConstraints>
+         
+         <children>
+            <HBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <children>
+                <Label text="Population size" />
+               </children>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+               <children>
+                 <Button mnemonicParsing="false" text="&lt;" onAction="#decreasePopulationSize"/>
+                  <Label prefHeight="25.0" prefWidth="60.0" text="50" fx:id="populationSizeLabel" alignment="CENTER"/>
+                  <Button mnemonicParsing="false" text="&gt;" onAction="#increasePopulationSize"/>
+               </children>
+            </HBox>
+             <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <children>
+               		<Label text="Number of genes (triangles)" />
+               </children>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="19.0" text="&lt;" onAction="#decreaseNrOfGenes"/>
+                  <Label prefHeight="25.0" prefWidth="60.0" text="30" fx:id="nrOfGenesLabel" alignment="CENTER"/>
+                  <Button mnemonicParsing="false" text="&gt;" onAction="#increaseNrOfGenes"/>
+               </children>
+            </HBox>
+             <HBox GridPane.columnIndex="0" GridPane.rowIndex="2">
+               <children>
+               		<Label text="Mutation rate" />
+               </children>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="19.0" text="&lt;" onAction="#decreaseMutationRate"/>
+                  <Label prefHeight="25.0" prefWidth="60.0" text="0.01" fx:id="mutationRateLabel" alignment="CENTER"/>
+                  <Button mnemonicParsing="false" text="&gt;" onAction="#increaseMutationRate"/>
+               </children>
+            </HBox>
+            <HBox GridPane.columnIndex="2" GridPane.rowIndex="0">
+               <children>
+               		<Label text="Generation: " />
+               </children>
+            </HBox>
+            <HBox GridPane.columnIndex="3" GridPane.rowIndex="0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="60.0" text="0" fx:id="nrOfGenerationsLabel"/>
+               </children>
+            </HBox>
+            <HBox GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+               		<Label text="Similarity (%): " />
+               </children>
+            </HBox>
+            <HBox GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <children>
+                  <Label text="0" fx:id="similarityLabel"/>
+               </children>
+            </HBox>
+            <HBox spacing="5" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <children>
+                 <Button fx:id="stop" mnemonicParsing="false" onAction="#stopEvolution" text="stop"/>
+                 <Button fx:id="start" mnemonicParsing="false" onAction="#runEvolution" text="start"/>
+               </children>
+            </HBox>
+         </children>
+         
+      </GridPane>
+   </bottom>
+   
+</BorderPane>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="EvolvingShapeImages" default="deploy" basedir="."  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+	
+	<property name="build.dir" value="build"/>
+	<property name="build.classes.dir" value="build/classes"/>
+	<property name="src.dir" value="src"/>
+
+	<target name="init-fx-tasks">
+		<path id="fxant">
+			<filelist>
+				<file name="${java.home}\..\lib\ant-javafx.jar"/>
+				<file name="${java.home}\lib\jfxrt.jar"/>
+			</filelist>
+		</path>
+	
+		<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+			uri="javafx:com.sun.javafx.tools.ant"
+			classpathref="fxant"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<target name="init" depends="clean, init-fx-tasks">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.classes.dir}" />
+	</target>
+
+	<target name="compile">
+		<javac includeantruntime="false" source="1.8" target="1.8" srcdir="${src.dir}" destdir="${build.classes.dir}" encoding="UTF-8"/>
+		<copy todir="${build.classes.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="deploy" depends="init, compile">
+		<fx:application id="fxApplication" name="EvolvingShapeImages"
+			mainClass="com.github.boemma.genetic.algorithm.main.Main"/>
+	
+		<mkdir dir="${build.classes.dir}/META-INF" />
+	
+		<fx:jar destfile="${build.dir}/EvolvingShapeImages.jar">
+			<fx:application refid="fxApplication"/>
+			<fileset dir="${build.classes.dir}"/>
+	
+			<manifest>
+				<attribute name="Implementation-Vendor" value="Emma Bogren"/>
+				<attribute name="Implementation-Title" value="EvolvingShapeImages"/>
+			</manifest>
+		</fx:jar>
+	</target>
+</project>
