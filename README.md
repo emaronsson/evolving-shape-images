@@ -23,7 +23,7 @@ Generations 14846, 26724, 69340. Similarity 90.22% - 91.94%
 
 -----------
 
-The famous painting hiding below only contains 30 triangles.
+The image below, hiding a famous painting, only contains 30 triangles.
 
 ![41442](https://user-images.githubusercontent.com/5596268/30002591-4ce11f2c-90ad-11e7-994f-28222f7e7b10.png)
 
